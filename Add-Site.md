@@ -61,7 +61,7 @@ Change the group and owner of the site's docroot to the site owner account
     $ sudo chown -R <username>:www-data /var/www/vhosts/domainname.com
 
 
-#### MySQL Configuration ####
+#### MySQL Configuration (add new database and DB user) ####
 
 Connent to mysql with the root account
 
@@ -84,3 +84,6 @@ Flush privileges
 
 > You must connent to the web server via SSH before attempting to connent to 
 > mysql when using an external tool such as Sequel Pro.
+>
+> Do not use the root account to connent to the DB from your app. Use the
+> account created here instead.
