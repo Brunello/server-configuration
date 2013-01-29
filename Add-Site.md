@@ -1,6 +1,8 @@
 Add New Site to Server
 ======================
 
+#### Apache Configuration ####
+
 Create a new configuration file:
 
     $ sudo vi /etc/apache2/sites-available/<domainname.com>
@@ -57,3 +59,28 @@ Reload apache
 Change the group and owner of the site's docroot to the site owner account
 
     $ sudo chown -R <username>:www-data /var/www/vhosts/domainname.com
+
+
+#### MySQL Configuration ####
+
+Connent to mysql with the root account
+
+    $ mysql -u root -p
+
+Create the database
+
+    > create database <dbname>;
+
+> When entering mysql commands, take care not to omit the trailing ';' in the commands.
+
+Create a new mysql user, give the user a password, and grant the user all priviledges on the new database
+
+    > grant akk on <dbname>.* to 'username' identified by 'password';
+
+Flush privileges
+
+    > flush privileges;
+    > exit;
+
+> You must connent to the web server via SSH before attempting to connent to 
+> mysql when using an external tool such as Sequel Pro.
