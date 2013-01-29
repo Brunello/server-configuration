@@ -10,5 +10,10 @@ For the initial setup (e.g. new client) go through the instruction in
 following the instructions in `Install-LAMP.md`.
 
 For each site that will be hosted on the server, use the instructions in 
-`Add-Site.md`. You can also find general mysql and apache instructions in this
+[Add-Site.md](Add-Site.md). You can also find general mysql and apache instructions in this
 file.
+
+> These instruction use vi in commands where a text editor is required. You can
+> substitute the text editor of your choice where applicable, but it is much 
+> easier to learn and use basic vi commands as vi will allow you to search the 
+> contents of files for the strings you need to replace.
