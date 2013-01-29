@@ -75,7 +75,7 @@ Create the database
 
 Create a new mysql user, give the user a password, and grant the user all priviledges on the new database
 
-    > grant akk on <dbname>.* to 'username' identified by 'password';
+    > grant all on <dbname>.* to 'username' identified by 'password';
 
 Flush privileges
 
