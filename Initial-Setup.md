@@ -1,11 +1,7 @@
-Securely Setup an Ubuntu Web
-============================
-
-
 ## Basic Server Setup ##
 
-* Set a hostname (choose whatever you want):
-    
+Set a hostname (choose whatever you want):
+
     $ echo "[hostname]" > /etc/hostname
     $ hostname -F /etc/hostname
 
@@ -13,37 +9,37 @@ Verify:
 
     $ hostname
 
-* Set the FQDN (in /etc/hosts)
+Set the FQDN (in /etc/hosts)
 Modify the last line to:
 
     [IP Address]    [hostname].[domainname.com] [hostname]
 
-* Set the timezone:
-    
+Set the timezone:
+
     $ dpkg-reconfigure tzdata
 
-* Verify:
-    
+Verify:
+
     $ date
 
-* Check for updates and install:
-    
+Check for updates and install:
+
     $ aptitude update
     $ aptitude upgrade
 
 > (Choose "keep the local version currently installed" when prompted - twice)
 
-* Create a new user that you will use in lieu of the root account:
+Create a new user that you will use in lieu of the root account:
 
     $ adduser <username>
 
 > (You can choose to enter Full Name etc when prompted)
 
-* Add the user to the sudoers group
+Add the user to the sudoers group
 
     $ usermod -a -G sudo <username>
 
-* Optionally, allow the user to run sudo commands without typing their password
+Optionally, allow the user to run sudo commands without typing their password
 
     $ visudo
 
@@ -51,9 +47,9 @@ Modify the last line to:
 
     <username> ALL=(ALL) NOPASSWD: ALL
 
-* At this point, you should logout (exit) and ssh in with the new account
+At this point, you should logout (exit) and ssh in with the new account
 
-* Disallow root SSH login:
+Disallow root SSH login:
 
     $ sudo vi /etc/ssh/sshd_config
 
@@ -63,15 +59,15 @@ Modify the last line to:
 > make sure it is lower than 1024 and doesn't conflict with any other open
 > ports.
 
-* Restart SSH:
+Restart SSH:
 
     $ sudo service ssh restart
 
-* Prevent repeaded login attempts:
+Prevent repeated login attempts:
 
     $ sudo aptitude install fail2ban
 
-* Configure Fail2Ban:
+Configure Fail2Ban:
 
     $ sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
     $ sudo vi /etc/fail2ban/jail.local
@@ -79,11 +75,11 @@ Modify the last line to:
 > Set “enabled” to “true” in the [ssh-ddos] section.
 > *Also, set "port" to whatever you chose earlier if you changes it from 22*
 
-* Restart Fail2Ban:
+Restart Fail2Ban:
 
     $ sudo service fail2ban restart
 
-* Add a firewall
+Add a firewall
 
     $ sudo vi /etc/iptables.firewall.rules
 
@@ -132,11 +128,11 @@ Modify the last line to:
 
 > Be sure to edit the port on line 25 if you changed it from the default 22
 
-* Activate the rule:
+Activate the rule:
 
     $ sudo iptables-restore < /etc/iptables.firewall.rules
 
-* Actuvate the firewall rules on startup:
+Activate the firewall rules on startup:
 
     $ sudo vi /etc/network/if-pre-up.d/firewall
 
@@ -145,68 +141,6 @@ Modify the last line to:
     #!/bin/sh
     /sbin/iptables-restore < /etc/iptables.firewall.rules
 
-* Set permissions on the startup script:
+Set permissions on the startup script:
 
     $ sudo chmod +x /etc/network/if-pre-up.d/firewall
-
-## Install LAMP ##
-
-* Install a compiler
-
-    $ sudo aptitude install build-essential
-
-* Insteall MySQL
-
-    $ sudo aptitude install mysql-server libmysqlclient-dev
-
-* Implement secure mysql install
-
-    $ mysql_secure_installation
-
-> Answer yes to everything exept the first question (assumin you set a root
-> password during installation).
-
-* Setup mysqlcheck to run regularly
-
-    $ crontab -e
-
-> Add the following line:
-
-    @weekly mysqlcheck -o --user=root --password=<your msql root password here> -A
-
-> The first time you run crontab, you will be asked to select the default
-> editor. Choose 3 (vim).
-
-* Install Apache
-
-    $ sudo aptitude install apache2
-
-* Install PHP
-
-    $ sudo aptitude install php5 libapache2-mod-php5 php5-mysql
-
-* Install git:
-
-    $ sudo aptitude install git
-
-* Install SVN:
-
-    $ sudo aptitude install subversion
-
-* Install postfix 
-
-    $ sudo aptitude install postfix
-
-* Add mail config file
-
-    $ sudo vi /etc/php5/conf.d/mailconfig.ini
-
-> Place the following in the file (substitute email address):
-
-    sendmail_from = <noreply@domain.com>
-    sendmail_path = /usr/sbin/sendmail -t -i -f <noreplay@domain.com>
-
-* Restart the server
-
-    $ sudo reboot
-
