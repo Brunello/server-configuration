@@ -5,7 +5,7 @@ Securely Setup an Ubuntu Web
 ## Basic Server Setup ##
 
 * Set a hostname (choose whatever you want):
-    
+
     $ echo "[hostname]" > /etc/hostname
     $ hostname -F /etc/hostname
 
@@ -19,15 +19,15 @@ Modify the last line to:
     [IP Address]    [hostname].[domainname.com] [hostname]
 
 * Set the timezone:
-    
+
     $ dpkg-reconfigure tzdata
 
 * Verify:
-    
+
     $ date
 
 * Check for updates and install:
-    
+
     $ aptitude update
     $ aptitude upgrade
 
