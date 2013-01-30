@@ -56,8 +56,8 @@ Disallow root SSH login:
 > Set "PermitRootLogin" to "no"
 
 > Optionally, you can set the SSH port ("Port") to a non-standard port. Just
-> make sure it is lower than 1024 and doesn't conflict with any other open
-> ports.
+> make sure it is [lower than 1024](http://unix.stackexchange.com/questions/16564/why-are-the-first-1024-ports-restricted-to-the-root-user-only)
+> and doesn't conflict with any other open ports.
 
 Restart SSH:
 
@@ -83,8 +83,8 @@ Add a firewall
 
     $ sudo vi /etc/iptables.firewall.rules
 
-> The following rules will allow ports 80, 443, 22 (or whatever you choose), 
-> ping and some testing ports. All others will be blocked.
+> The following rules will allow ports 80, 443, 22 (or whatever you chose
+> previously), ping and some testing ports. All others will be blocked.
 
 > Paste the following into the new file:
 
