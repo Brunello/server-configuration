@@ -26,6 +26,16 @@ Setup mysqlcheck to run regularly
 > The first time you run crontab, you will be asked to select the default
 > editor. Choose 3 (vim).
 
+Tweak mysql settings
+
+    $ sudo vi /etc/mysql/conf.d/drupal.cnf
+
+> Enter the following in the new drupal.cnf file and save (this increases the
+> mysql query cache to 128M):
+
+    [mysqld]
+    query_cache_size = 134217728
+
 Install Apache
 
     $ sudo aptitude install apache2
