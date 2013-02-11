@@ -10,7 +10,7 @@ Tweaking LAMP Settings
 > For example, if your server has 2048M (2G) of RAM, multiply the values below 
 > by 4 (`2048 / 512 = 4`).
 
-   $ sudo vi /etc/apache2/apache2.conf
+    $ sudo vi /etc/apache2/apache2.conf
 
 Inside the mpm_prefork_module declaration, set the following values (See note above):
 
@@ -56,9 +56,15 @@ your web app:
     $ cd /var/www/vhosts/<path_to_your_web_root>
     $ sudo ln /usr/share/doc/php-apc/apc.php apc.php
 
+Set a password for the APC Interface:
+
+    $sudo vi /usr/share/doc/php-apc/apc.php
+
 Add APC customizations:
 
     $ sudo vi /etc/php5/apache2/conf.d/apc.ini
+
+> On line 42, change `password` to a unique password.
 
 Add the following lines below `extension=apc.so`:
 
@@ -92,3 +98,48 @@ your `apc.shm_size` to something like `96M`.
 Restart Apache:
 
     $ sudo service apache2 restart
+
+###More information APC settings###
+
+* **apc.enabled=1**
+> This enables APC. Handy if you want to disable during future development.
+
+* **apc.shm_segments=1 & apc.shm_size=512**
+> This defines one segment and allocates 512M of memory to APC. As explained
+> above, the initial value of 512 is purposely higher than we anticipate will
+> be required by the apps. Set to 512, we can see how much memory will be 
+> consumed in total without APC needing to flush anything and without the cache
+> becoming fragmented.
+
+* **apc.cache_by_default=1**
+> This tells APC to cache every script it encounters.
+
+* **apc.stat=0**
+> This is probably the most important setting. Without this, APC will check
+> every script it encounters to see if it has been updated since the last
+> time it was read (cached). Setting `apc.stat=0` can yeild noticable 
+> performance gains, as APC does not have to "stat" each file to make sure it 
+> hasn't been updated.
+> 
+> Note that this setting is probably not appropriate for servers that are 
+> hosting apps in development. But APC as a whole probably isn't appropriate
+> in that case.
+
+* **apc.ttl=0**
+> This is another very important directive. By default, APC will expire cached
+> items that are older than 7200S (2 Hours). Setting this to zero completely 
+> disables the expiration functionality.
+> 
+> Again, this is only appropriate for production servers. Remember that you
+> will need to clear the opcode Cache on this server every time a script is 
+> changed.
+
+####Clearing the opcodeCache####
+
+1. Visit domain.com/apc.php (you created a symlink to the apc.php script during
+   initial APC setup.
+
+2. Click on the `Login` button in the upper right and enter `apc` as the username
+   and whatever password you selected during initial APC setup.
+
+3. Click on the `Clear opcode Cache` button in the upper right.
