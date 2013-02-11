@@ -4,8 +4,8 @@ Tweaking LAMP Settings
 ###Optimize Apache###
 
 > The values for the following settings are generic values for a server with 
-> 512M of RAM. To caluculate, divide the amount of RAM on your server and 
-> multiply the result by the values below.
+> 512M of RAM. To caluculate, divide the amount of RAM on your server by 512
+> and multiply the result by the values below.
 > 
 > For example, if your server has 2048M (2G) of RAM, multiply the values below 
 > by 4 (`2048 / 512 = 4`).
