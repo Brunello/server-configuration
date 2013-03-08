@@ -44,6 +44,10 @@ Install PHP
 
     $ sudo aptitude install php5 libapache2-mod-php5 php5-mysql
 
+Install PHP cURL
+
+    $ sudo apt-get install curl libcurl3 libcurl3-dev php5-curl
+
 Install git:
 
     $ sudo aptitude install git
