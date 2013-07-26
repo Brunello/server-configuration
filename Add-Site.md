@@ -32,17 +32,13 @@ Create the site directories
 
 Create a new user that will own these site:
 
-    $ sudo useradd <username>
+    $ sudo adduser <username>
 
 > Use the following pattern when choosing a username:
 
     <domainname before TLD>-<site instance>
 
 > For example: `domainname-prod` or `domainname-staging`
-
-Set a password for the new account
-
-    $ sudo passwd <username>
 
 Change the user's home directory to the site's webroot
 
