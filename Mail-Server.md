@@ -122,6 +122,7 @@ the following:
     PIDFILE="${PWDIR}/saslauthd.pid"
 
 * Change the `OPTIONS` line at the end to the following:
+* 
 
     OPTIONS="-c -m /var/spool/postfix/var/run/saslauthd"
 
