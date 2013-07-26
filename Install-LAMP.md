@@ -66,7 +66,7 @@ Add mail config file
 
 > Place the following in the file (substitute email address):
 
-    sendmail_from = <noreply@domain.com>
+    sendmail_from = noreply@domain.com
     sendmail_path = /usr/sbin/sendmail -t -i -f noreplay@domain.com
 
 Restart the server
