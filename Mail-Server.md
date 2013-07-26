@@ -1,7 +1,7 @@
 Install and configure Postfix as an MTA
 =======================================
 
-Youo will need a fully-qualified domain name and properly set domain name.
+Youo will need a fully-qualified domain name and a properly configures `hosts` file.
 
 Install Postfix:
 
