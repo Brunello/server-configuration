@@ -117,14 +117,13 @@ the following:
 * Change `START=no` to `START=yes` (Around line 7)
 * Add the following lines below `START=yes`:
 
-    PWDIR="/var/spool/postfix/var/run/saslauthd"
-    PARAMS="-m ${PWDIR}"
-    PIDFILE="${PWDIR}/saslauthd.pid"
+      PWDIR="/var/spool/postfix/var/run/saslauthd"
+      PARAMS="-m ${PWDIR}"
+      PIDFILE="${PWDIR}/saslauthd.pid"
 
 * Change the `OPTIONS` line at the end to the following:
 
-
-    OPTIONS="-c -m /var/spool/postfix/var/run/saslauthd"
+      OPTIONS="-c -m /var/spool/postfix/var/run/saslauthd"
 
 Update the dpkg so the sasl deamon can create the missing directory:
 
