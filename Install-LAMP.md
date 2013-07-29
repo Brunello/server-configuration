@@ -46,11 +46,11 @@ Install PHP
 
 Install PHP cURL
 
-    $ sudo apt-get install curl libcurl3 libcurl3-dev php5-curl
+    $ sudo aptitude install curl libcurl3 libcurl3-dev php5-curl
     
 Install PHP GD
 
-    $ sudo apptitude install php5-gd
+    $ sudo aptitude install php5-gd
 
 Install git:
 
