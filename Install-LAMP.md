@@ -52,6 +52,19 @@ Install PHP GD
 
     $ sudo aptitude install php5-gd
 
+Install Pear and PECL for file upload progress
+
+    $ sudo aptitude install php5-dev
+    $ sudo aptitude install uploadprogress
+
+> Add the upload progress extension to php configuration
+
+    $ sudo vi /etc/php5/apache2/php.ini
+
+> In the `File Uploads` sectionPaste the following line below ` file_uploads = On`:
+
+    extension=uploadprogress.so
+
 Install git:
 
     $ sudo aptitude install git
