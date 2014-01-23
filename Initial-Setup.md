@@ -63,19 +63,19 @@ Restart SSH:
 
     $ sudo service ssh restart
 
-###SSH Keys
+###SSH Keys###
 
 This step is optional, but it will allow you to login to the server without a password.
 
-* If you haven't already, generate your SSH keys. On your local machine:
+If you haven't already, generate your SSH keys. On your local machine:
 
     ssh-keygen -t rsa -C "<your email address>"
 
-* Copy the public key to the server (again, from your local machine - note the trailing "`:`"):
+Copy the public key to the server (again, from your local machine - note the trailing "`:`"):
 
     scp ~/.ssh/id_rsa.pub <your username>@<your server ip>: // this username is the username for the account on the remote server.
 
-* Then, from the server:
+Then, from the server:
 
     mkdir .ssh
     mv id_rsa.pub .ssh/authorized_keys
