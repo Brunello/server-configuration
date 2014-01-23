@@ -63,6 +63,36 @@ Restart SSH:
 
     $ sudo service ssh restart
 
+###SSH Keys
+
+This step is optional, but it will allow you to login to the server without a password.
+
+* If you haven't already, generate your SSH keys. On your local machine:
+
+    ssh-keygen -t rsa -C "<your email address>"
+
+* Copy the public key to the server (again, from your local machine - note the trailing "`:`"):
+
+    scp ~/.ssh/id_rsa.pub <your username>@<your server ip>: // this username is the username for the account on the remote server.
+
+* Then, from the server:
+
+    mkdir .ssh
+    mv id_rsa.pub .ssh/authorized_keys
+    chown -R <your username>:<your username> .ssh
+    chmod 700 .ssh
+    chmod 600 .ssh/authorized_keys
+
+**Adding Additional Keys**  
+To add keys for additional computers, follow these steps (assuming you have already created the key pair on the new machine). From the new computer:
+
+    ssh-copy-id <your username>@<your server ip> // this username is the username for the account on the remote server.
+
+
+
+
+###Basic Security
+
 Prevent repeated login attempts:
 
     $ sudo aptitude install fail2ban
